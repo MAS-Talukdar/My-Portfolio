@@ -1,0 +1,71 @@
+body{
+    font-family: "Orbitron", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    background-color: #ffff;
+    /* background-image: url('./media/bg-photo.jpg'); */
+    margin: 0;
+}
+header{
+    width: 900px;
+    height: auto;
+    margin: 0 auto;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-top: 20px;
+    /* border: 5px solid gainsboro; */
+    /* box-shadow: 4px 4px 4px black; */
+    /* background-color: cornsilk; */
+}
+.first{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* margin-top: 20px; */
+}
+.my-photo{
+    width: 60px;
+    border-radius: 10px;
+    height: auto;
+}
+.links ul li{
+    list-style: none;
+}
+.links ul{
+    display: flex;
+    gap: 5px;
+    margin-left: 32px;
+}
+.links ul li a{
+    text-decoration: none;
+    color: rgba(13, 91, 163, 0.74);
+    font-weight: bold;
+    /* margin-left: 25px; */
+    /* margin-top: 0px; */
+}
+.links ul li a:hover{
+    color: black;
+    /* cursor: pointer; */
+}
+.social-media{
+    margin-left: 72px;
+    display: flex;
+}
+.social-media ul li{
+    list-style: none;
+}
+.social-media ul{
+    display: flex;
+    gap: 15px;
+    margin-left: -25px;
+}
+
+/* main styles */
+.main-text{
+    width: 900px;
+    height: auto;
+    margin: 0 auto;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
