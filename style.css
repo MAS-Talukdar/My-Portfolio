@@ -120,6 +120,7 @@ main{
     .skills{
         display: grid;
         grid-template-columns: 1fr 1fr;
+        gap: 2px;
     }
     .skill{
         width: 50%;
