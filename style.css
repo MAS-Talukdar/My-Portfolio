@@ -45,6 +45,8 @@ header{
 }
 .links ul li a:hover{
     color: black;
+    text-decoration: underline;
+    transition-delay: 0.2s;
     /* cursor: pointer; */
 }
 .social-media{
@@ -61,6 +63,9 @@ header{
 }
 
 /* main styles */
+main{
+    margin-top: 150px;
+}
 .main-text{
     width: 900px;
     height: auto;
@@ -68,4 +73,55 @@ header{
     padding: 10px;
     box-sizing: border-box;
     margin-top: 20px;
+}
+.hd{
+    width: 900px;
+    height: auto;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 50px;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: underline;
+    color: rgba(63, 23, 173, 0.575);
+}
+/* skills */
+.skills{
+    width: 900px;
+    height: auto;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 280px 280px 280px;
+    gap: 60px;
+    justify-content: center;
+}
+.skill{
+    width: 250px;
+    height: 150px;
+    border: 2px solid rgb(224, 162, 36);
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px;
+}
+.expressjs{
+    width: 153px;
+    height: auto;
+}
+.btn{
+    background-color: white;
+    width: 250px;
+    height: 150px;
+    text-align: center;
+}
+/* Responsiveness */
+
+@media (max-width: 390px){
+    .skills{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .skill{
+        width: 50%;
+}
 }
