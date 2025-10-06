@@ -3,24 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <title>Sufian's Portfolio</title>
+    <link rel="shortcut icon" href="./media/my-photo.jpg" type="image/x-icon">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
-    <!-- Fevicon -->
-    <link rel="shortcut icon" href="./media/my-photo.jpg" type="image/x-icon">
-
-    <!-- Title -->
-    <title data-lang-key="title">Sufian's Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- CSS File -->
     <link rel="stylesheet" href="./Styles/style.css">
-
     <style>
         html {
             scroll-behavior: smooth;
@@ -29,6 +22,15 @@
             font-family: 'Inter', sans-serif;
             background-color: #1a1a2e;
             color: #e4e4e7;
+        }
+        .matrix-rain-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.5;
         }
         .section {
             padding: 5rem 1rem;
@@ -40,60 +42,57 @@
             transform: translateY(-10px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
+        .animated-border {
+            border: 2px solid transparent;
+            background-clip: padding-box, border-box;
+            background-origin: padding-box, border-box;
+            background-image: linear-gradient(to right, #2a2a44, #2a2a44), linear-gradient(to right, #76a9f4, #8b5cf6);
+            position: relative;
+        }
+        .animated-border::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #76a9f4, #8b5cf6);
+            z-index: -1;
+            border-radius: inherit;
+        }
     </style>
 </head>
 <body class="bg-[#1a1a2e] text-gray-100">
+    <!-- Matrix Rain Canvas -->
+    <canvas id="matrix-rain" class="matrix-rain-bg"></canvas>
 
     <!-- Header and Navbar -->
     <header class="bg-[#162a48] shadow-lg sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex items-center justify-between flex-wrap">
             <div class="flex items-center space-x-4">
                 <a href="#hero" class="flex items-center space-x-2 text-2xl font-extrabold text-[#76a9f4]">
-                    <!-- Replace the src URL below with your own photo's URL -->
-                    <img class="w-10 h-10 rounded-full border-2 border-indigo-500" src="./media/my-photo.jpg">
-                    <span class="text-white" data-lang-key="name">MUHAMMAD ABU SUFIAN <span class="text-[#76a9f4]">TALUKDAR</span></span>
+                    <img class="w-10 h-10 rounded-full border-2 border-indigo-500" src="./media/my-photo.jpg" alt="Sufian Talukdar's profile photo">
+                    <span class="text-white">MUHAMMAD ABU <span class="text-[#76a9f4]"> SUFIAN</span> TALUKDAR</span>
                 </a>
             </div>
 
-            <!-- Language Buttons -->
-            <!-- <div class="flex space-x-2 my-3 mx-11 md:my-0">
-                <button id="english-btn" class="px-3 py-1 text-sm md:text-base font-semibold text-white bg-indigo-600 rounded-lg shadow-lg hover:bg-indigo-700 transition-colors transform hover:scale-105 active:scale-95">English</button>
-                <button id="bangla-btn" class="px-3 py-1 text-sm md:text-base font-semibold text-indigo-600 bg-white border border-indigo-600 rounded-lg shadow-lg hover:bg-indigo-50 transition-colors transform hover:scale-105 active:scale-95">বাংলা</button>
-            </div> -->
-
-            <!-- Mobile menu button -->
-            <!-- <div class="md:hidden">
-                <button id="mobile-menu-btn" class="text-white hover:text-[#76a9f4] focus:outline-none">
-                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h4"></path>
-                    </svg>
-                </button>
-            </div> -->
-
             <!-- Desktop Navigation -->
             <div class="hidden md:flex items-center space-x-6">
-                <a href="#skills" class="text-gray-300 hover:text-[#76a9f4] transition-colors font-medium" data-lang-key="navSkills">Skills</a>
-                <a href="#about" class="text-gray-300 hover:text-[#76a9f4] transition-colors font-medium" data-lang-key="navAbout">About</a>
-                <a href="#contact" class="text-gray-300 hover:text-[#76a9f4] transition-colors font-medium" data-lang-key="navContact">Contact</a>
+                <a href="#skills" class="text-gray-300 hover:text-[#76a9f4] transition-colors font-medium">Skills</a>
+                <a href="#about" class="text-gray-300 hover:text-[#76a9f4] transition-colors font-medium">About</a>
+                <a href="#contact" class="text-gray-300 hover:text-[#76a9f4] transition-colors font-medium">Contact</a>
             </div>
         </nav>
-
-        <!-- Mobile Menu (hidden by default) -->
-        <!-- <div id="mobile-menu" class="hidden md:hidden bg-[#162a48] shadow-lg py-2">
-            <a href="#skills" class="block px-6 py-3 text-white hover:bg-[#283e5c] font-medium" data-lang-key="navSkills">Skills</a>
-            <a href="#about" class="block px-6 py-3 text-white hover:bg-[#283e5c] font-medium" data-lang-key="navAbout">About</a>
-            <a href="#contact" class="block px-6 py-3 text-white hover:bg-[#283e5c] font-medium" data-lang-key="navContact">Contact</a>
-        </div> -->
     </header>
 
     <main class="container mx-auto">
         <!-- Hero Section -->
         <section id="hero" class="section flex flex-col items-center text-center">
-            <div class="mb-12 ">
+            <div class="mb-12">
                 <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4 text-white">
-                    <span data-lang-key="heroText">Hi, I'm a passionate web developer</span>
+                    <span>Hi, I'm a passionate web developer</span>
                 </h1>
-                <p class="text-lg text-center md:text-xl text-gray-400 mb-6 max-w-2xl w-[70%] mx-auto" data-lang-key="heroSubtext">
+                <p class="text-lg text-center md:text-xl text-gray-400 mb-6 max-w-2xl w-[70%] mx-auto">
                     I build elegant and efficient web applications. With expertise in a variety of modern web technologies, I create clean, and beautiful websites. Let's build something great together.
                 </p>
                 <div class="animated-border brr flex justify-evenly space-x-4 mt-10">
@@ -104,134 +103,119 @@
                         <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.341 3.52 9.805 8.358 11.385.61.111.833-.266.833-.593v-2.195c-3.342.727-4.041-1.611-4.041-1.611-.546-1.385-1.334-1.754-1.334-1.754-1.089-.745.083-.73.083-.73 1.205.085 1.839 1.238 1.839 1.238 1.07 1.837 2.809 1.305 3.496.998.108-.775.419-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.312.467-2.383 1.235-3.221-.124-.305-.536-1.524.117-3.176 0 0 1.006-.322 3.303 1.23.957-.266 1.983-.399 3.004-.403 1.021.004 2.047.137 3.004.403 2.297-1.552 3.303-1.23 3.303-1.23.653 1.652.241 2.871.118 3.176.766.838 1.233 1.909 1.233 3.221 0 4.609-2.807 5.624-5.485 5.92-.412.356-.784.847-.784 1.516v2.24c0 .327.22.708.835.592 4.838-1.583 8.358-6.046 8.358-11.385 0-6.627-5.373-12-12-12z"/></svg>
                     </a>
                     <a href="https://www.facebook.com/md.abu.sufian.talukdar.0" target="_blank" rel="noopener noreferrer" class="text-white hover:text-indigo-400 transition-colors transform hover:scale-110" aria-label="Facebook">
-                        <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.595 0 0 .595 0 1.325v21.351C0 23.404.595 24 1.325 24h11.495v-9.294H9.691v-3.622h3.129V8.413c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.463.099 2.794.143v3.24l-1.918.001c-1.505 0-1.797.716-1.797 1.765v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.405 24 24 
-                        23.404 24 22.676V1.325C24 .595 23.405 0 22.675 0z"/>
-                        </svg>
+                        <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.595 0 0 .595 0 1.325v21.351C0 23.404.595 24 1.325 24h11.495v-9.294H9.691v-3.622h3.129V8.413c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.463.099 2.794.143v3.24l-1.918.001c-1.505 0-1.797.716-1.797 1.765v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.405 24 24 23.404 24 22.676V1.325C24 .595 23.405 0 22.675 0z"/></svg>
                     </a>
                     <a href="mailto:mdabusufiantalukdar8@gmail.com" target="_blank" rel="noopener noreferrer" class="text-white hover:text-indigo-400 transition-colors transform hover:scale-110" aria-label="Gmail">
-                        <svg class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12.713l11.985-8.713v16c0 .552-.448 1-1 1h-21.97c-.552 0-1-.448-1-1v-16l11.985 8.713zM12 1.5l-11.985 8.713v-2.213c0-.552.448-1 1-1h21.97c.552 0 1 .448 1 1v2.213l-11.985-8.713z"/>
-                        </svg>
+                        <svg class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12.713l11.985-8.713v16c0 .552-.448 1-1 1h-21.97c-.552 0-1-.448-1-1v-16l11.985 8.713zM12 1.5l-11.985 8.713v-2.213c0-.552.448-1 1-1h21.97c.552 0 1 .448 1 1v2.213l-11.985-8.713z"/></svg>
                     </a>
-
-                    <!-- <a href="mailto:mdabusufiantalukdar8@gmail.com" class="text-white hover:text-indigo-400 transition-colors transform hover:scale-110">
-                        <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12.713l-11.985-6.713 11.985 6.713 11.985-6.713-11.985 6.713zm0 2.287l-12-7v-2.071l12 7.041 12-7.041v2.071l-12 7z"/></svg>
-                    </a> -->
                 </div>
             </div>
         </section>
         
-            <!-- My Photo: The button to open the modal -->
-            <div id="opennModal" class="animated-border w-[260px] mx-auto text-center px-8 py-6 text-lg font-semibold text-white rounded-lg shadow-lg hover: transition-colors transform hover:scale-105 active:scale-95">--SEE MY PICTURE--</div>
-            <!-- The Modal Section -->
-            <section>
-                <div id="mmyModal" class="hidden fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm flex items-center justify-center z-50 transition-opacity duration-300">
+        <!-- My Photo Modal Opener -->
+        <div id="opennModal" class="animated-border w-[260px] mx-auto text-center px-8 py-6 text-lg font-semibold text-white rounded-lg shadow-lg hover: transition-colors transform hover:scale-105 active:scale-95">--SEE MY PICTURE--</div>
+        
+        <!-- The Photo Modal Section -->
+        <section>
+            <div id="mmyModal" class="hidden fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm flex items-center justify-center z-50 transition-opacity duration-300">
                 <div class="bg-gray-800 rounded-2xl p-6 w-80 shadow-lg relative transform transition-transform duration-300 ease-in-out scale-95">
-            
-                <!-- Close button -->
-                <button id="closeeModal" class="absolute top-3 right-3 text-white hover:text-gray-300 text-3xl font-bold p-1 leading-none rounded-full transition duration-300">
-                    &times;
-                </button>
-
-                <!-- Modal content -->
-                <h2 class="text-3xl text-center font-extrabold mb-4 text-white">Hello!</h2>
-                <!-- Placeholder image, since local files are not accessible -->
-                <img class="rounded-lg w-full mx-auto py-3" src="./media/my-formal-photo.jpg" alt="">
-                </div>
-                </div>
-            </section>
-        <!-- Skills Section -->
-        <section id="skills" class="section">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-[#76a9f4] mb-12" data-lang-key="skillsTitle">My Skills</h2>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
-                <!-- HTML -->
-                <div class="animated-border skill-card p-6 bg-[#2a2a44] rounded-lg shadow-md flex flex-col items-center">
-                    <img src="./media/icons/html.png" alt="HTML" class="w-16 h-16 mb-4">
-                    <h3 class="text-xl font-bold text-gray-200" data-lang-key="skillHtml">HTML</h3>
-                </div>
-                <!-- CSS -->
-                <div class="animated-border skill-card p-6 bg-[#2a2a44] rounded-lg shadow-md flex flex-col items-center">
-                    <img src="./media/icons/css.png" alt="CSS" class="w-16 h-16 mb-4">
-                    <h3 class="text-xl font-bold text-gray-200" data-lang-key="skillCss">CSS</h3>
-                </div>
-                <!-- Tailwind CSS -->
-                <div class="animated-border skill-card p-6 bg-[#2a2a44] rounded-lg shadow-md flex flex-col items-center">
-                    <img src="./media/icons/tailwind.png" alt="Tailwind CSS" class="w-16 h-16 mb-4">
-                    <h3 class="text-xl font-bold text-gray-200" data-lang-key="skillTailwind">Tailwind CSS</h3>
-                </div>
-                <!-- JavaScript -->
-                <div class="animated-border skill-card p-6 bg-[#2a2a44] rounded-lg shadow-md flex flex-col items-center">
-                    <img src="./media/icons/javascript.png" alt="JavaScript" class="w-16 h-16 mb-4">
-                    <h3 class="text-xl font-bold text-gray-200" data-lang-key="skillJs">JavaScript</h3>
-                </div>
-                <!-- React -->
-                <div class="animated-border skill-card p-6 bg-[#2a2a44] rounded-lg shadow-md flex flex-col items-center">
-                    <img src="./media/icons/react.png" alt="React JS" class="w-16 h-16 mb-4">
-                    <h3 class="text-xl font-bold text-gray-200" data-lang-key="skillReact">React JS</h3>
-                </div>
-                <!-- Next.js -->
-                <div class="animated-border skill-card p-6 bg-[#2a2a44] rounded-lg shadow-md flex flex-col items-center">
-                    <img src="./media/icons/nextjs.png" alt="Next JS" class="w-16 h-16 mb-4">
-                    <h3 class="text-xl font-bold text-gray-200" data-lang-key="skillNext">Next JS</h3>
-                </div>
-                <!-- Node.js -->
-                <div class="animated-border skill-card p-6 bg-[#2a2a44] rounded-lg shadow-md flex flex-col items-center">
-                    <img src="./media/icons/node.png" alt="Node JS" class="w-16 h-16 mb-4">
-                    <h3 class="text-xl font-bold text-gray-200" data-lang-key="skillNode">Node JS</h3>
-                </div>
-                <!-- Express.js -->
-                <div class="animated-border skill-card p-6 bg-[#2a2a44] rounded-lg shadow-md flex flex-col items-center">
-                    <img src="./media/icons/express-js-icon.png" alt="Express JS" class="w-16 h-16 mb-4">
-                    <h3 class="text-xl font-bold text-gray-200" data-lang-key="skillExpress">Express JS</h3>
-                </div>
-                <!-- MongoDB -->
-                <div class="animated-border skill-card p-6 bg-[#2a2a44] rounded-lg shadow-md flex flex-col items-center">
-                    <img src="./media/icons/mongodb.png" alt="MongoDB" class="w-16 h-16 mb-4">
-                    <h3 class="text-xl font-bold text-gray-200" data-lang-key="skillMongo">MongoDB</h3>
-                </div>
-                <!-- Firebase -->
-                <div class="animated-border skill-card p-6 bg-[#2a2a44] rounded-lg shadow-md flex flex-col items-center">
-                    <img src="./media/icons/firebase.png" alt="Firebase" class="w-16 h-16 mb-4">
-                    <h3 class="text-xl font-bold text-gray-200" data-lang-key="skillFirebase">Firebase</h3>
-                </div>
-                <!-- AI Integration -->
-                <div class="animated-border skill-card p-6 bg-[#2a2a44] rounded-lg shadow-md flex flex-col items-center">
-                    <img src="./media/icons/ai.png" alt="AI Integration" class="w-16 h-16 mb-4">
-                    <h3 class="text-xl font-bold text-gray-200" data-lang-key="skillAi">AI Integration</h3>
-                </div>
-                <div id="openModal" class="animated-border skill-card p-6 bg-[#2a2a44] rounded-lg shadow-md flex flex-col items-center">
-                    <button class="font-bold text-2xl text-center flex items-center justify-center my-[30%]">Download CV</button>
-                    <!-- <img src="./media/icons/ai.png" alt="AI Integration" class="w-16 h-16 mb-4"> -->
-                    <!-- <h3 class="text-xl font-bold text-gray-200" data-lang-key="skillAi">AI Integration</h3> -->
+                    <button id="closeeModal" class="absolute top-3 right-3 text-white hover:text-gray-300 text-3xl font-bold p-1 leading-none rounded-full transition duration-300">
+                        &times;
+                    </button>
+                    <h2 class="text-3xl text-center font-extrabold mb-4 text-white">Hello!</h2>
+                    <img class="rounded-lg w-full mx-auto py-3" src="./media/my-formal-photo.jpg" alt="Sufian Talukdar's formal photo placeholder">
                 </div>
             </div>
         </section>
 
-    <!-- The Modal Section -->
-    <section>
-        <div id="myModal" class="hidden fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm flex items-center justify-center z-50 transition-opacity duration-300">
-            <div class="bg-gray-800 rounded-2xl p-6 w-80 shadow-lg relative transform transition-transform duration-300 ease-in-out scale-95">
-            
-                <!-- Close button -->
-                <button id="closeModal" class="absolute top-3 right-3 text-white hover:text-gray-300 text-3xl font-bold p-1 leading-none rounded-full transition duration-300">
-                    &times;
-                </button>
-
-                <!-- Modal content -->
-                <h2 class="text-3xl text-center font-extrabold mb-4 text-white">Hello!</h2>
-                <p class="text-gray-300 text-center text-lg">CV is not available at this time!</p>
-                <!-- Placeholder image, since local files are not accessible -->
-                <img class="w-1/2 mx-auto py-5" src="./media/smile.png" alt="Smiley face icon">
+        <!-- Skills Section -->
+        <section id="skills" class="section">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-[#76a9f4] mb-12">My Skills</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
+                <!-- HTML -->
+                <div class="animated-border skill-card p-6 bg-[#2a2a44] rounded-lg shadow-md flex flex-col items-center">
+                    <img src="./media/icons/html.png" alt="HTML Icon" class="w-16 h-16 mb-4">
+                    <h3 class="text-xl font-bold text-gray-200">HTML</h3>
+                </div>
+                <!-- CSS -->
+                <div class="animated-border skill-card p-6 bg-[#2a2a44] rounded-lg shadow-md flex flex-col items-center">
+                    <img src="./media/icons/css.png" alt="CSS Icon" class="w-16 h-16 mb-4">
+                    <h3 class="text-xl font-bold text-gray-200">CSS</h3>
+                </div>
+                <!-- Tailwind CSS -->
+                <div class="animated-border skill-card p-6 bg-[#2a2a44] rounded-lg shadow-md flex flex-col items-center">
+                    <img src="./media/icons/tailwind.png" alt="Tailwind CSS Icon" class="w-16 h-16 mb-4">
+                    <h3 class="text-xl font-bold text-gray-200">Tailwind CSS</h3>
+                </div>
+                <!-- JavaScript -->
+                <div class="animated-border skill-card p-6 bg-[#2a2a44] rounded-lg shadow-md flex flex-col items-center">
+                    <img src="./media/icons/javascript.png" alt="JavaScript Icon" class="w-16 h-16 mb-4">
+                    <h3 class="text-xl font-bold text-gray-200">JavaScript</h3>
+                </div>
+                <!-- React -->
+                <div class="animated-border skill-card p-6 bg-[#2a2a44] rounded-lg shadow-md flex flex-col items-center">
+                    <img src="./media/icons/react.png" alt="React JS Icon" class="w-16 h-16 mb-4">
+                    <h3 class="text-xl font-bold text-gray-200">React JS</h3>
+                </div>
+                <!-- Next.js -->
+                <div class="animated-border skill-card p-6 bg-[#2a2a44] rounded-lg shadow-md flex flex-col items-center">
+                    <img src="./media/icons/nextjs.png" alt="Next JS Icon" class="w-16 h-16 mb-4">
+                    <h3 class="text-xl font-bold text-gray-200">Next JS</h3>
+                </div>
+                <!-- Node.js -->
+                <div class="animated-border skill-card p-6 bg-[#2a2a44] rounded-lg shadow-md flex flex-col items-center">
+                    <img src="./media/icons/node.png" alt="Node JS Icon" class="w-16 h-16 mb-4">
+                    <h3 class="text-xl font-bold text-gray-200">Node JS</h3>
+                </div>
+                <!-- Express.js -->
+                <div class="animated-border skill-card p-6 bg-[#2a2a44] rounded-lg shadow-md flex flex-col items-center">
+                    <img src="./media/icons/express-js-icon.png" alt="Express JS Icon" class="w-16 h-16 mb-4">
+                    <h3 class="text-xl font-bold text-gray-200">Express JS</h3>
+                </div>
+                <!-- MongoDB -->
+                <div class="animated-border skill-card p-6 bg-[#2a2a44] rounded-lg shadow-md flex flex-col items-center">
+                    <img src="./media/icons/mongodb.png" alt="MongoDB Icon" class="w-16 h-16 mb-4">
+                    <h3 class="text-xl font-bold text-gray-200">MongoDB</h3>
+                </div>
+                <!-- Firebase -->
+                <div class="animated-border skill-card p-6 bg-[#2a2a44] rounded-lg shadow-md flex flex-col items-center">
+                    <img src="./media/icons/firebase.png" alt="Firebase Icon" class="w-16 h-16 mb-4">
+                    <h3 class="text-xl font-bold text-gray-200">Firebase</h3>
+                </div>
+                <!-- AI Integration -->
+                <div class="animated-border skill-card p-6 bg-[#2a2a44] rounded-lg shadow-md flex flex-col items-center">
+                    <img src="./media/icons/ai.png" alt="AI Integration Icon" class="w-16 h-16 mb-4">
+                    <h3 class="text-xl font-bold text-gray-200">AI Integration</h3>
+                </div>
+                
+                <div id="openModal" class="animated-border skill-card p-6 bg-[#2a2a44] rounded-lg shadow-md flex flex-col items-center">
+                    <button class="font-bold text-2xl text-center flex items-center justify-center my-[30%]">Download CV</button>
+                </div>
             </div>
-        </div>
-    </section>
-                <!-- About Section -->
+        </section>
+
+        <!-- The CV Modal Section -->
+        <section>
+            <div id="myModal" class="hidden fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm flex items-center justify-center z-50 transition-opacity duration-300">
+                <div class="bg-gray-800 rounded-2xl p-6 w-80 shadow-lg relative transform transition-transform duration-300 ease-in-out scale-95">
+                    <button id="closeModal" class="absolute top-3 right-3 text-white hover:text-gray-300 text-3xl font-bold p-1 leading-none rounded-full transition duration-300">
+                        &times;
+                    </button>
+                    <h2 class="text-3xl text-center font-extrabold mb-4 text-white">Hello!</h2>
+                    <p class="text-gray-300 text-center text-lg">CV is not available at this time!</p>
+                    <img class="w-1/2 mx-auto py-5" src="./media/smile.png" alt="Smiley face icon">
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
         <section id="about" class="section">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-[#76a9f4] mb-8" data-lang-key="aboutTitle">About Me</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-[#76a9f4] mb-8">About Me</h2>
             <div class="max-w-4xl mx-auto text-center">
-                <p class="text-lg text-gray-400 mb-6" data-lang-key="aboutText">
+                <p class="text-lg text-gray-400 mb-6">
                     With a strong foundation in a variety of modern web technologies, I am passionate about creating clean, efficient, and beautiful digital experiences. My journey as a developer is driven by a desire to solve complex problems and build user-friendly applications that make a difference. I thrive in dynamic environments and am constantly learning to stay at the forefront of the industry.
                 </p>
-                <p class="text-lg text-gray-400" data-lang-key="aboutText2">
+                <p class="text-lg text-gray-400">
                     I have a proven track record of bringing ideas to life, from initial concept to deployment. My expertise spans both front-end and back-end development, allowing me to build robust, full-stack solutions. I believe in writing clean, maintainable code and collaborating effectively with teams to achieve a shared vision.
                 </p>
             </div>
@@ -239,12 +223,12 @@
 
         <!-- Contact Section -->
         <section id="contact" class="section">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-[#76a9f4] mb-12" data-lang-key="contactTitle">Get In Touch</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-[#76a9f4] mb-12">Get In Touch</h2>
             <div class="max-w-xl mx-auto text-center">
-                <p class="text-lg text-gray-400 mb-8" data-lang-key="contactText">
+                <p class="text-lg text-gray-400 mb-8">
                     I'm currently available for new projects and opportunities. Feel free to reach out to me!
                 </p>
-                <a href="mailto:mdabusufiantalukdar8@gmail.com" class="inline-block px-8 py-4 text-lg font-semibold text-white bg-indigo-600 rounded-lg shadow-lg hover:bg-indigo-700 transition-colors transform hover:scale-105 active:scale-95" data-lang-key="contactButton">
+                <a href="mailto:mdabusufiantalukdar8@gmail.com" class="inline-block px-8 py-4 text-lg font-semibold text-white bg-indigo-600 rounded-lg shadow-lg hover:bg-indigo-700 transition-colors transform hover:scale-105 active:scale-95">
                     Send Email
                 </a>
             </div>
@@ -253,140 +237,37 @@
 
     <!-- Footer -->
     <footer class="bg-[#162a48] text-gray-400 py-6 text-center">
-        <p data-lang-key="footerText">&copy; 2025 Muhammad Abu Sufian Talukdar. All Rights Reserved.</p>
+        <p>&copy; 2025 Muhammad Abu Sufian Talukdar. All Rights Reserved.</p>
     </footer>
 
     <script>
-        // Language content
-        // const content = {
-        //     en: {
-        //         title: "Sufian's Portfolio",
-        //         name: "Muhammad Abu Sufian Talukdar",
-        //         navSkills: "Skills",
-        //         navAbout: "About",
-        //         navContact: "Contact",
-        //         heroText: "Hi, I'm a passionate web developer",
-        //         heroSubtext: "I build elegant and efficient web applications. With expertise in a variety of modern web technologies, I create clean, and beautiful websites. Let's build something great together.",
-        //         aboutTitle: "About Me",
-        //         aboutText: "With a strong foundation in a variety of modern web technologies, I am passionate about creating clean, efficient, and beautiful digital experiences. My journey as a developer is driven by a desire to solve complex problems and build user-friendly applications that make a difference. I thrive in dynamic environments and am constantly learning to stay at the forefront of the industry.",
-        //         aboutText2: "I have a proven track record of bringing ideas to life, from initial concept to deployment. My expertise spans both front-end and back-end development, allowing me to build robust, full-stack solutions. I believe in writing clean, maintainable code and collaborating effectively with teams to achieve a shared vision.",
-        //         skillsTitle: "My Skills",
-        //         skillHtml: "HTML",
-        //         skillCss: "CSS",
-        //         skillTailwind: "Tailwind CSS",
-        //         skillJs: "JavaScript",
-        //         skillReact: "React JS",
-        //         skillNext: "Next JS",
-        //         skillNode: "Node JS",
-        //         skillExpress: "Express JS",
-        //         skillMongo: "MongoDB",
-        //         skillFirebase: "Firebase",
-        //         skillAi: "AI Integration",
-        //         contactTitle: "Get In Touch",
-        //         contactText: "I'm currently available for new projects and opportunities. Feel free to reach out to me!",
-        //         contactButton: "Send Email",
-        //         footerText: "© 2025 Muhammad Abu Sufian Talukdar. All Rights Reserved."
-        //     },
-        //     bn: {
-        //         title: "সুফিয়ানের পোর্টফোলিও",
-        //         name: "মোহাম্মাদ আবু সুফিয়ান তালুকদার",
-        //         navSkills: "দক্ষতা",
-        //         navAbout: "আমার সম্পর্কে",
-        //         navContact: "যোগাযোগ",
-        //         heroText: "Hi, I'm a passionate web developer",
-        //         heroSubtext: "আমি মার্জিত এবং কার্যকর ওয়েব অ্যাপ্লিকেশন তৈরি করি। আধুনিক ওয়েব প্রযুক্তিতে আমার দক্ষতা দিয়ে আমি পরিষ্কার, এবং সুন্দর ওয়েবসাইট তৈরি করি। চলুন একসাথে একটি অসাধারণ কিছু তৈরি করি।",
-        //         aboutTitle: "আমার সম্পর্কে",
-        //         aboutText: "আধুনিক ওয়েব প্রযুক্তির একটি শক্তিশালী ভিত্তি নিয়ে, আমি পরিষ্কার, কার্যকর এবং সুন্দর ডিজিটাল অভিজ্ঞতা তৈরি করতে আগ্রহী। একজন ডেভেলপার হিসেবে আমার যাত্রা জটিল সমস্যা সমাধান এবং ব্যবহারকারী-বান্ধব অ্যাপ্লিকেশন তৈরির আকাঙ্ক্ষা দ্বারা চালিত হয় যা পরিবর্তন আনতে পারে। আমি গতিশীল পরিবেশে উন্নতি করি এবং শিল্পের অগ্রভাগে থাকার জন্য ক্রমাগত শিখছি।",
-        //         aboutText2: "আমার ধারণা থেকে শুরু করে বাস্তবায়ন পর্যন্ত কাজ করার একটি প্রমাণিত ট্র্যাক রেকর্ড আছে। আমার দক্ষতা ফ্রন্ট-এন্ড এবং ব্যাক-এন্ড উভয় উন্নয়ন জুড়ে বিস্তৃত, যা আমাকে শক্তিশালী, পূর্ণ-স্ট্যাক সমাধান তৈরি করতে দেয়। আমি পরিষ্কার, রক্ষণাবেক্ষণযোগ্য কোড লিখতে এবং একটি ভাগ করা দৃষ্টিভঙ্গি অর্জনের জন্য দলগুলির সাথে কার্যকরভাবে সহযোগিতা করতে বিশ্বাস করি।",
-        //         skillsTitle: "আমার দক্ষতা",
-        //         skillHtml: "এইচটিএমএল",
-        //         skillCss: "সিএসএস",
-        //         skillTailwind: "টেলউইন্ড সিএসএস",
-        //         skillJs: "জাভাস্ক্রিপ্ট",
-        //         skillReact: "রিয়্যাক্ট জেএস",
-        //         skillNext: "নেক্সট জেএস",
-        //         skillNode: "নোড জেএস",
-        //         skillExpress: "এক্সপ্রেস জেএস",
-        //         skillMongo: "মঙ্গোডিবি",
-        //         skillFirebase: "ফায়ারবেস",
-        //         skillAi: "এআই ইন্টিগ্রেশন",
-        //         contactTitle: "যোগাযোগ করুন",
-        //         contactText: "আমি বর্তমানে নতুন প্রকল্প এবং সুযোগের জন্য উপলব্ধ। নির্দ্বিধায় আমার সাথে যোগাযোগ করতে পারেন!",
-        //         contactButton: "ইমেল পাঠান",
-        //         footerText: "© ২০২৫ মোহাম্মাদ আবু সুফিয়ান তালুকদার। সর্বস্বত্ব সংরক্ষিত।"
-        //     }
-        // };
+        // Modal features for CV
+        const openModal = document.getElementById("openModal");
+        const myModal = document.getElementById("myModal");
+        const closeModal = document.getElementById("closeModal");
 
-        // // Function to set language
-        // function setLanguage(lang) {
-        //     document.querySelectorAll('[data-lang-key]').forEach(element => {
-        //         const key = element.getAttribute('data-lang-key');
-        //         if (content[lang][key]) {
-        //             element.textContent = content[lang][key];
-        //         }
-        //     });
-        //     localStorage.setItem('lang', lang);
-        // }
+        openModal.addEventListener("click", () => {
+            myModal.classList.remove("hidden");
+        });
 
-        // // Event listeners for language buttons
-        // document.getElementById('english-btn').addEventListener('click', () => setLanguage('en'));
-        // document.getElementById('bangla-btn').addEventListener('click', () => setLanguage('bn'));
+        closeModal.addEventListener("click", () => {
+            myModal.classList.add("hidden");
+        });
 
-        // // Load language from localStorage or default to English
-        // document.addEventListener('DOMContentLoaded', () => {
-        //     const savedLang = localStorage.getItem('lang') || 'en';
-        //     setLanguage(savedLang);
-        // });
+        window.addEventListener("click", (e) => {
+            if (e.target === myModal) {
+                myModal.classList.add("hidden");
+            }
+        });
 
-        // // Mobile menu toggle
-        // const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        // const mobileMenu = document.getElementById('mobile-menu');
-
-        // mobileMenuBtn.addEventListener('click', () => {
-        //     mobileMenu.classList.toggle('hidden');
-        // });
-
-        // // Close mobile menu when a link is clicked
-        // mobileMenu.querySelectorAll('a').forEach(link => {
-        //     link.addEventListener('click', () => {
-        //         mobileMenu.classList.add('hidden');
-        //     });
-        // });
-
-        // Modal features
-            const openModal = document.getElementById("openModal");
-    const myModal = document.getElementById("myModal");
-    const closeModal = document.getElementById("closeModal");
-
-    // Show modal
-    openModal.addEventListener("click", () => {
-      myModal.classList.remove("hidden");
-    });
-
-    // Close modal on button click
-    closeModal.addEventListener("click", () => {
-      myModal.classList.add("hidden");
-    });
-
-    // Close modal when clicking outside the modal content
-    window.addEventListener("click", (e) => {
-      if (e.target === myModal) {
-        myModal.classList.add("hidden");
-      }
-    });
-
-
-
-         // Get references to the DOM elements
+        // Modal features for Photo
         const opennModal = document.getElementById("opennModal");
         const mmyModal = document.getElementById("mmyModal");
         const closeeModal = document.getElementById("closeeModal");
         const modalContent = mmyModal.querySelector("div");
 
-        // Function to show the modal
         function showModal() {
             mmyModal.classList.remove("hidden");
-            // Use setTimeout to allow the browser to register the class removal before applying transitions
             setTimeout(() => {
                 mmyModal.classList.add("opacity-100");
                 modalContent.classList.remove("scale-95");
@@ -394,28 +275,81 @@
             }, 10);
         }
 
-        // Function to hide the modal
         function hideModal() {
             mmyModal.classList.remove("opacity-100");
             modalContent.classList.remove("scale-100");
             modalContent.classList.add("scale-95");
-            
-            // Wait for the transition to finish before hiding the element completely
             setTimeout(() => {
                 mmyModal.classList.add("hidden");
             }, 300);
         }
 
-        // Event listeners
         opennModal.addEventListener("click", showModal);
         closeeModal.addEventListener("click", hideModal);
 
-        // Close modal when clicking outside the modal content
         window.addEventListener("click", (e) => {
             if (e.target === mmyModal) {
                 hideModal();
             }
         });
+
+        // Matrix Digital Rain Animation
+        window.onload = function() {
+            const canvas = document.getElementById('matrix-rain');
+            const ctx = canvas.getContext('2d');
+
+            // Set canvas dimensions
+            let width = canvas.width = window.innerWidth;
+            let height = canvas.height = window.innerHeight;
+            
+            // Set font properties for text
+            const fontSize = 16;
+            const fontName = 'Roboto';
+            ctx.font = `${fontSize}px ${fontName}`;
+            
+            const columns = Math.floor(width / fontSize);
+            const drops = Array(columns).fill(0);
+
+            // Characters to use for the rain effect
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@#$%^&*()_+{}[]|:;"<>?,./';
+
+            function drawMatrix() {
+                // Creates the fade effect
+                ctx.fillStyle = 'rgba(26, 26, 46, 0.05)';
+                ctx.fillRect(0, 0, width, height);
+
+                // Set color for the characters
+                ctx.fillStyle = '#76a9f4';
+
+                // Loop through each drop
+                for (let i = 0; i < drops.length; i++) {
+                    const text = characters[Math.floor(Math.random() * characters.length)];
+                    const x = i * fontSize;
+                    const y = drops[i] * fontSize;
+
+                    // Draw the character
+                    ctx.fillText(text, x, y);
+
+                    // If the drop is at the bottom, reset it to the top
+                    if (y > height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+
+                    // Increment the drop position
+                    drops[i]++;
+                }
+            }
+            
+            setInterval(drawMatrix, 50);
+
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+                drops.length = Math.floor(width / fontSize);
+                drops.fill(0);
+            });
+        };
     </script>
 </body>
 </html>
